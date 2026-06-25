@@ -2,26 +2,47 @@ class Solution
 {
     public boolean isValid(String s)
     {
-            char [] valid = s.toCharArray();
+        char[] stack = new char[s.length()];
+        int top = -1;
 
-            for (int i=0; i<valid.length-1; i++)
+        for (int i = 0; i < s.length(); i++)
+        {
+            char ch = s.charAt(i);
+
+            if (ch == '(' || ch == '{' || ch == '[')
             {
-                for (int j=i+1; j<valid.length; j++)
-                {
-                    if (valid[i] == valid[j])
-                }
+                stack[++top] = ch;
             }
+           
+            else
+            {
+                if (top == -1)
+                    return false;
 
-            return false;
+                char last = stack[top--];
+
+                if (ch == ')' && last != '(')
+                    return false;
+
+                if (ch == '}' && last != '{')
+                    return false;
+
+                if (ch == ']' && last != '[')
+                    return false;
+            }
+        }
+
+        return top == -1;
     }
 }
 
 class Main 
 {
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) 
+    {
         Solution sol = new Solution();
-
-        System.out.print(sol.isValid("()"));
+       
+        System.out.println(sol.isValid("()[]{}"));  
+       
     }
 }
