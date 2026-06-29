@@ -1,19 +1,32 @@
+class Solution
+{
+    public boolean containsDuplicate(int[] nums)
+    {
+         for (int i=0; i<nums.length-1; i++)
+        {
+            for (int j=i+1; j<nums.length; j++)
+            {
+                if (nums[i] - nums[j] == 0) {
+                     System.out.println("Duplicate is: " + nums[i]);
+                     return true;
+                }
+            }
+        }
+        return false;
+        
+    }
+}
+
 class Main 
 {
     public static void main(String[] args) {
         
-        int[] arr = {1, 3, 4, 2, 2};
+        int[] nums = {1, 3, 4, 5, 2};
 
-        for (int i=0; i<arr.length-1; i++)
-        {
-            for (int j=i+1; j<arr.length; j++)
-            {
-                if (arr[i] - arr[j] == 0) {
-                    System.out.println("Duplicate is: " + arr[i]);
-                    return;
-                }
-            }
-        }
+        Solution sol = new Solution();
+
+        System.out.print(sol.containsDuplicate(nums));
+
 
     }
 }
